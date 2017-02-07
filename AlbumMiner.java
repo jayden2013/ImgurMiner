@@ -16,12 +16,14 @@ import javax.imageio.ImageIO;
  */
 public class AlbumMiner {
 
+	String albumName;
 	String albumURL;
 	String username;
 	int savedImageCount = 0;
 
 	public AlbumMiner(String albumURL){
 		this.albumURL = albumURL;
+		this.albumName = this.albumURL.substring(25, albumURL.length());
 	}
 
 	/**
@@ -32,6 +34,10 @@ public class AlbumMiner {
 		return this.username;
 	}
 
+	public String getAlbumName(){
+		return this.albumName;
+	}
+
 	/**
 	 * Begins album mining.
 	 */
@@ -39,7 +45,6 @@ public class AlbumMiner {
 		ArrayList<String> imageList = new ArrayList<String>();
 		int imageCount = 0;
 		try{
-			//this.albumURL = "http://imgur.com/gallery/QzHbV"; //for testing
 			URL url = new URL(this.albumURL);
 			InputStream inStream = url.openStream();
 			BufferedReader bufRead = new BufferedReader(new InputStreamReader(inStream));
@@ -81,33 +86,35 @@ public class AlbumMiner {
 	 */
 	private void saveImages(ArrayList<String> imageList){
 		File outputFile, directory;
-		for (int i = 0; i < imageList.size(); i++){
+		for (int k = 0; k < imageList.size(); k++){
 			try {
-				URL imageURL = new URL("http://www." + imageList.get(i));
+				URL imageURL = new URL("http://www." + imageList.get(k));
 				BufferedImage photo = ImageIO.read(imageURL);
 				directory = new File("Imgur_Users\\");
 				directory.mkdir();
 				directory = new File("Imgur_Users\\" + this.username + "\\");
 				directory.mkdir();
+				directory = new File("Imgur_Users\\" + this.username + "\\" + this.albumName + "\\");
+				directory.mkdir();
 				if (imageURL.toString().substring(imageURL.toString().length() - 3, imageURL.toString().length()).equals("png")){
-					outputFile = new File("Imgur_Users\\" + this.username + "\\" + i + ".png");					
+					outputFile = new File("Imgur_Users\\" + this.username + "\\" + this.albumName + "\\" + this.savedImageCount + ".png");					
 					ImageIO.write(photo,"png", outputFile);
 					this.savedImageCount++;
 				}
 				else if (imageURL.toString().substring(imageURL.toString().length() - 3, imageURL.toString().length()).equals("gif")){
-					outputFile = new File("Imgur_Users\\" + this.username + "\\" + i + ".gif");					
+					outputFile = new File("Imgur_Users\\" + this.username + "\\" + this.albumName + "\\" + this.savedImageCount + ".gif");					
 					ImageIO.write(photo,"gif", outputFile);
 					this.savedImageCount++;
 				}
 				else if (imageURL.toString().substring(imageURL.toString().length() - 3, imageURL.toString().length()).equals("jpg")){
-					outputFile = new File("Imgur_Users\\" + this.username + "\\" + i + ".jpg");					
+					outputFile = new File("Imgur_Users\\" + this.username + "\\" + this.albumName + "\\" + this.savedImageCount + ".jpg");					
 					ImageIO.write(photo,"jpg", outputFile);
 					this.savedImageCount++;
 				}
 				System.out.println("SAVED IMAGE: " + imageURL.toString());
 
 			} catch (IOException e) {
-				System.err.println("Failed to save image: " + imageList.get(i));
+				System.err.println("Failed to save image: " + imageList.get(k));
 			}
 
 		}
