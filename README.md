@@ -9,4 +9,5 @@ Currently, only individual photos and individual albums are saved. In future upd
 #Usage
 <hr>
 javac *.java
+</br>
 java ImgurMiner
