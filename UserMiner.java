@@ -34,7 +34,6 @@ public class UserMiner {
 		return this.url;
 	}
 
-
 	/**
 	 * Mines the user profile.
 	 */

@@ -34,10 +34,30 @@ public class AlbumMiner {
 		return this.username;
 	}
 
+	/**
+	 * Returns the album name.
+	 * @return
+	 */
 	public String getAlbumName(){
 		return this.albumName;
 	}
-
+	
+	/**
+	 * Sets the username.
+	 * @param un
+	 */
+	public void setUsername(String un){
+		this.username = un;
+	}
+	
+	/**
+	 * Sets the album name
+	 * @param an
+	 */
+	public void setAlbumName(String an){
+		this.albumName = an;
+	}
+	
 	/**
 	 * Begins album mining.
 	 */
@@ -84,7 +104,7 @@ public class AlbumMiner {
 	 * Saves the photos from an arraylist.
 	 * @param imageList
 	 */
-	private void saveImages(ArrayList<String> imageList){
+	public void saveImages(ArrayList<String> imageList){
 		File outputFile, directory;
 		for (int k = 0; k < imageList.size(); k++){
 			try {

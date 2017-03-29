@@ -24,7 +24,7 @@ public class ImgurLink {
 
 	private void checkValidity(){
 		try {
-			this.link = new URL(this.URL);
+			this.link = new URL("http://www." + this.URL);
 			this.inStream = link.openStream();
 			this.bufRead = new BufferedReader(new InputStreamReader(this.inStream));
 			this.isValid = true;

@@ -1,7 +1,7 @@
 
 /**
  * Driver class for UserMiner.
- * @author Jayden
+ * @author Jayden Weaver
  *
  */
 public class ImgurUserMiner {

@@ -7,7 +7,7 @@ import java.util.Random;
  *
  */
 public class ErraticMiner {
-	String imgurURL = "http://imgur.com/";
+	String imgurURL = "i.imgur.com/";
 
 	public ErraticMiner(){
 
@@ -23,7 +23,7 @@ public class ErraticMiner {
 		for (int i = 0; i < numSwings; i++){
 			ImgurLink link = new ImgurLink(this.imgurURL + generateContentID());
 			if (link.isValid()){
-				linkArray.add(link.getURL());
+				linkArray.add(link.getURL() + ".png");
 			}
 		}
 		return linkArray;
