@@ -1,6 +1,11 @@
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -27,7 +32,6 @@ public class ImgurMinerGUI {
 				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-
 
 		JFrame frame = new JFrame("ImgurMiner");
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -84,6 +88,32 @@ public class ImgurMinerGUI {
 		JLabel github = new JLabel("github.com/jayden2013");
 		JLabel twitter = new JLabel("twitter.com/weaverfever69");
 		JLabel year = new JLabel("2017");
+
+		//Add hyperlinks
+		github.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				try{
+					Desktop.getDesktop().browse(new URI("http://www.github.com/jayden2013")); //Github account
+				}
+				catch(Exception ex){
+					System.err.println(ex);
+				}
+			}
+		});
+		github.setCursor(new Cursor(Cursor.HAND_CURSOR)); //Set the cursor to make it more obvious this is a hyperlink.
+
+		twitter.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				try{
+					Desktop.getDesktop().browse(new URI("http://www.twitter.com/weaverfever69")); //Twitter account
+				}
+				catch(Exception ex){
+					System.err.println(ex);
+				}
+			}
+		});
+		twitter.setCursor(new Cursor(Cursor.HAND_CURSOR)); //Set the cursor to make it more viosu this is a hyperlink.
+
 		aboutPanel.add(author);
 		aboutPanel.add(github);
 		aboutPanel.add(twitter);
