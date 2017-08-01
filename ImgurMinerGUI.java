@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -37,7 +38,7 @@ public class ImgurMinerGUI {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setFocusable(false); //get rid of ugly dotted outline.
 		tabbedPane.setPreferredSize(new Dimension(700,300));
-
+		
 		//Pane 1
 		JPanel panel1 = new JPanel();
 		JLabel label = new JLabel("User:");
@@ -75,6 +76,8 @@ public class ImgurMinerGUI {
 				save.setUsername("Z-180");
 				save.setAlbumName("Scattershot");
 				save.saveImages(images);
+				UIManager.put("OptionPane.okButtonText", "insert shovel joke here");
+				JOptionPane.showMessageDialog(frame, "Dug up " + images.size() + " images!", "Finished Mining.", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 
@@ -112,7 +115,7 @@ public class ImgurMinerGUI {
 				}
 			}
 		});
-		twitter.setCursor(new Cursor(Cursor.HAND_CURSOR)); //Set the cursor to make it more viosu this is a hyperlink.
+		twitter.setCursor(new Cursor(Cursor.HAND_CURSOR)); //Set the cursor to make it more obvious this is a hyperlink.
 
 		aboutPanel.add(author);
 		aboutPanel.add(github);
